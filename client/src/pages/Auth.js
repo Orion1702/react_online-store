@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -10,7 +9,7 @@ import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 
 const Auth = () => {
     const location = useLocation();
-    const isLogin = location.pathname == LOGIN_ROUTE
+    const isLogin = location.pathname === LOGIN_ROUTE
     console.log(location)
 
     return (

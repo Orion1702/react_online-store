@@ -5,24 +5,49 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import {observer} from "mobx-react-lite";
-import { NavLink } from "react-router-dom";
-import { SHOP_ROUTE } from "../utils/consts";
+import { NavLink, useHistory } from "react-router-dom";
+import { SHOP_ROUTE, ADMIN_ROUTE, LOGIN_ROUTE } from "../utils/consts";
 
 
 const NavBar = observer(() => {
     const {user} = useContext(Context)
+    const history = useHistory()
+    
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
                 <NavLink style={{color: 'white',}} to={SHOP_ROUTE}>Logo</NavLink>
                 {user.isAuth ?
                     <Nav className="me-auto" style={{color: 'white',}}>
-                        <Button variant="outline-light">Admin panel</Button>
-                        <Button variant="outline-light" className="ml-2" onClick={() => user.setIsAuth(false)}>Exit</Button>
+                        <Button 
+                            variant="outline-light"
+                            onClick={() => history.push(ADMIN_ROUTE)}
+                        >Admin panel</Button>
+                        <Button 
+                            variant="outline-light" 
+                            className="ml-2" 
+                            onClick={() => 
+                                {
+                                    history.push(LOGIN_ROUTE); 
+                                    user.setIsAuth(false);
+                                    console.log(`user.Auth ${user.isAuth}`)
+                                }
+                            }
+
+                            // onClick={() => user.setIsAuth(false)}
+                        >Exit</Button>
                     </Nav>
                 :
                     <Nav className="me-auto" style={{color: 'white',}}>
-                        <Button variant="outline-light" onClick={() => user.setIsAuth(true)}>Auth</Button>
+                        <Button 
+                            variant="outline-light" 
+                            onClick={() => 
+                                {
+                                    user.setIsAuth(true)
+                                    console.log(`user.Auth ${user.isAuth}`)
+                                }
+                            }
+                        >Auth</Button>
                     </Nav>
                 }
             </Container>

@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "react-bootstrap/esm/Button";
 import Card from "react-bootstrap/esm/Card";
 import Col from "react-bootstrap/esm/Col";
 import { useHistory } from "react-router-dom";
@@ -18,7 +17,7 @@ const DeviceItem = ({device}) => {
                 <Card.Body>
                     <Card.Title>Card Title</Card.Title>
                     <Card.Text className="text-black-50">
-                    <div>{device.rating} *</div>
+                        {device.rating} *
                     </Card.Text>
                     {/* <Button variant="primary">Go somewhere</Button> */}
                 </Card.Body>
