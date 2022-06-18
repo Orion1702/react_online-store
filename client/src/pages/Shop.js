@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import TypeBar from "../components/TypeBar";
 import BrandBar from "../components/BrandBar";
+import DeviceList from "../components/DeviceList";
 
 const Shop = () => {
     return (
@@ -17,6 +18,7 @@ const Shop = () => {
                 </Col>
                 <Col md={9}>
                     <BrandBar/>
+                    <DeviceList />
                 </Col>
             </Row>
             
