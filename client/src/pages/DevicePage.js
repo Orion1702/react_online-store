@@ -1,33 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Card from "react-bootstrap/esm/Card";
 import CardImg from "react-bootstrap/esm/CardImg";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
+import { useParams } from "react-router-dom";
+import { fetchOneDevice } from "../http/deviceAPI";
 
 const DevicePage = () => {
-    const device = {
-        id: 1, 
-        name: "Name device 1", 
-        price: 2500, 
-        rating: 5, 
-        img: "https://royal-life.com.ua/files/resized/products/delonghi-rimadonna-6600.600x800.jpg.webp"
-    };
+    const [device, setDevice] = useState( {info: []})
+    const {id} = useParams()
 
-    const decsription = [
-        {id:1, title: 'Charactery #1', description: "lorem ipsum"},
-        {id:2, title: 'Charactery #2', description: "lorem ipsum"},
-        {id:3, title: 'Charactery #3', description: "lorem ipsum"},
-        {id:4, title: 'Charactery #4', description: "lorem ipsum"},
-    ]
+    useEffect( () =>{
+        fetchOneDevice(id).then( data => setDevice(data))
+        // .then(console.log(device))
+    }, [])
+
+    const decsription = []
     
 
     return (
         <Container className="mt-3">
             <Row>
                 <Col md="4">
-                    <CardImg src={device.img} />
+                    <CardImg src={process.env.REACT_APP_API_URL + device.img} />
                 </Col>
                 <Col md="4">
                     <Row className="d-flex align-items-center justify-content-between">
@@ -39,7 +36,7 @@ const DevicePage = () => {
                         </div>
                     </Row>
                     <div>
-                        {decsription.map(info => 
+                        {device.info.map(info => 
                             <Row key={info.id} className="">
                                 <b>{info.title}: </b>
                                 <span>{info.description}</span>
