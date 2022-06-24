@@ -31,7 +31,11 @@ const NavBar = observer(() => {
                         <Button 
                             variant="outline-light" 
                             className="ml-2" 
-                            onClick={() => logOut()}
+                            onClick={() => {
+                                logOut()
+                                history.push(SHOP_ROUTE)
+                                }
+                            }
 
                             // onClick={() => user.setIsAuth(false)}
                         >Exit</Button>
