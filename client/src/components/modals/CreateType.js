@@ -12,10 +12,6 @@ const CreateType = ({show, onHide}) => {
             setValue('')
             onHide()
         })
-        // createType({name: value}).then(data => {
-        //     setValue('')
-        //     onHide()
-        // })
     }
 
     return(
